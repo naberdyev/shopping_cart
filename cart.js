@@ -1,12 +1,27 @@
 "use strict";
 
 const cart = [ ];
-const itemList = document.getElementById('item-list');
+const itemList = document.getElementById('item-list')
 const countItems = document.getElementById('count-items')
 const totalPrice = document.getElementById('total-price')
 const addForm = document.getElementById('add-form')
 const itemName = document.getElementById('item-name')
 const itemPrice = document.getElementById('item-price')
+
+
+// Handle change events on update input
+itemList.onchange = function (e) {
+    if (e.target && e.target.classList.contains('update')) {
+        const name = e.target.dataset.name;
+        const qty = parseInt(e.target.value);
+
+        if (qty <= 0) {
+            removeItem(name)
+        } else {
+            updateCart(name, qty);
+        }
+    }
+}
 
 
 // Handle clicks on list
@@ -65,6 +80,7 @@ function showItems() {
         <button class="remove" data-name="${name}">Remove</button>
         <button class="add-one" data-name="${name}"> + </button>
         <button class="remove-one" data-name="${name}"> - </button>
+        <input class="update" type="number" data-name="${name}" step="1" min="0"
         </li>`
     });
     itemList.innerHTML = itemStr;
@@ -106,13 +122,22 @@ function removeItem(name, qty = 0) {
 }
 
 
+function updateCart(name, qty) {
+    for (let i = 0; i < cart.length; i++)
+    if (cart[i].name === name) {
+        cart[i].qty = qty;
+        showItems();
+        return
+    }
+}
+
 //test
-// addItem('Apple', 0.99);
-// addItem('Orange', 1.99);
-// addItem('Opinion', 0.02);
-// addItem('Banana', 1.03);
-// addItem('Bana na', 1.03);
-// addItem('Orange', 1.99);
+addItem('Apple', 0.99);
+addItem('Orange', 1.99);
+addItem('Opinion', 0.02);
+addItem('Banana', 1.03);
+addItem('Bana na', 1.03);
+addItem('Orange', 1.99);
 
 
 
