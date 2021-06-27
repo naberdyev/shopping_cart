@@ -76,11 +76,16 @@ function showItems() {
     cart.forEach(element => {
 
         const { name, price, qty } = element
-        itemStr += `<li>${name} $${price} X ${qty} = ${price * qty} 
-        <button class="remove" data-name="${name}">Remove</button>
-        <button class="add-one" data-name="${name}"> + </button>
-        <button class="remove-one" data-name="${name}"> - </button>
-        <input class="update" type="number" data-name="${name}" step="1" min="0"
+        itemStr += `<li>
+        <span>
+            ${name} $${price} X ${qty} = ${(price * qty).toFixed(2)} 
+        </span>
+        <span>
+            <button class="remove" data-name="${name}">Remove</button>
+            <button class="add-one" data-name="${name}"> + </button>
+            <button class="remove-one" data-name="${name}"> - </button>
+            <input class="update" type="number" data-name="${name}" step="1" min="0"
+        </span>
         </li>`
     });
     itemList.innerHTML = itemStr;
