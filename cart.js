@@ -11,11 +11,15 @@ const itemPrice = document.getElementById('item-price')
 
 // Handle clicks on list
 itemList.onclick = function (e) {
-    // console.log("Clicked list");
-    console.log(e.target);
     if (e.target && e.target.classList.contains('remove')) {
         const name = e.target.dataset.name;
         removeItem(name);
+    }else if (e.target && e.target.classList.contains('remove-one')) {
+        const name = e.target.dataset.name;
+        removeItem(name, 1);
+    }else if (e.target && e.target.classList.contains('add-one')) {
+        const name = e.target.dataset.name;
+        addItem(name)
     }
 }
 
@@ -59,6 +63,8 @@ function showItems() {
         const { name, price, qty } = element
         itemStr += `<li>${name} $${price} X ${qty} = ${price * qty} 
         <button class="remove" data-name="${name}">Remove</button>
+        <button class="add-one" data-name="${name}"> + </button>
+        <button class="remove-one" data-name="${name}"> - </button>
         </li>`
     });
     itemList.innerHTML = itemStr;
