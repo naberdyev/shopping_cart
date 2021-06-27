@@ -9,6 +9,16 @@ const itemName = document.getElementById('item-name')
 const itemPrice = document.getElementById('item-price')
 
 
+// Handle clicks on list
+itemList.onclick = function (e) {
+    // console.log("Clicked list");
+    console.log(e.target);
+    if (e.target && e.target.classList.contains('remove')) {
+        const name = e.target.dataset.name;
+        removeItem(name);
+    }
+}
+
 
 //handle add form submit
 addForm.onsubmit = function (e) {
@@ -47,7 +57,9 @@ function showItems() {
     cart.forEach(element => {
 
         const { name, price, qty } = element
-        itemStr += `<li>${name} $${price} X ${qty} = ${price * qty}</li>`
+        itemStr += `<li>${name} $${price} X ${qty} = ${price * qty} 
+        <button class="remove" data-name="${name}">Remove</button>
+        </li>`
     });
     itemList.innerHTML = itemStr;
 
@@ -81,6 +93,7 @@ function removeItem(name, qty = 0) {
             if (qty === 0 || cart[i].qty < 1) {
                 cart.splice(i, 1);
             }
+            showItems();
             return
         }
     }
