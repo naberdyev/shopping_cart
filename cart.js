@@ -91,7 +91,7 @@ function showItems() {
     itemList.innerHTML = itemStr;
 
     // console.log(`The total price is ${getTotalsPrice()}`);
-    totalPrice.innerHTML = `Total: ${getTotalPrice()}`
+    totalPrice.innerHTML = `Total: ${getTotalPrice() $}`
 }
 
 //get quantity 
@@ -137,14 +137,10 @@ function updateCart(name, qty) {
 }
 
 //test
-// addItem('Apple', 0.99);
-// addItem('Orange', 1.99);
-// addItem('Opinion', 0.02);
-// addItem('Banana', 1.03);
-// addItem('Bana na', 1.03);
-// addItem('Orange', 1.99);
+addItem('Apple', 0.99);
+addItem('Orange', 1.99);
+addItem('Opinion', 0.02);
+addItem('Banana', 1.03);
+addItem('Bana na', 1.03);
+addItem('Orange', 1.99);
 
-
-
-
-// showItems()
